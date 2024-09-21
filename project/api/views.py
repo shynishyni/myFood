@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import FoodSerializer  
 from django.http.response import JsonResponse
+from .models import FoodDetails
 
 @csrf_exempt
 def recipes(request):
@@ -16,3 +17,19 @@ def recipes(request):
             return JsonResponse({"recipy": "Recipe added successfully"}, safe=False)
         else:
             return JsonResponse(serializer.errors, safe=False)
+    if request.method == 'GET':
+        item= FoodDetails.objects.all()
+        serializer = FoodSerializer(item,many=True)
+        return JsonResponse(serializer.data,safe=False)
+
+@csrf_exempt
+def getrecipe(request,name=""):
+    try:
+        recipe=FoodDetails.objects.filter(name__icontains=name)
+        if recipe.exists():
+            serializer=FoodSerializer(recipe,many=True)
+            return JsonResponse(serializer.data,safe=False)
+        else:
+            return JsonResponse({"message": "Recipe not found"}, status=404)
+    except FoodDetails.DoesNotExist:
+                return JsonResponse({"message":"Recipe not found"},status=404)
