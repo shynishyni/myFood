@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-y!7bir#+a-7kqry@+w(8^tnmn**uj&h#=7+#3y!vxsj8=p-2jp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','localhost','127.0.0.1','10.0.2.2','192.168.1.7','192.168.1.6']
+ALLOWED_HOSTS = ['myfood.onrender.com','localhost','127.0.0.1','10.0.2.2','192.168.1.7','192.168.1.6']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -78,11 +79,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myfood',
-        'HOST':'127.0.0.1',
-        'PORT':'3306',
-        'USER':'root',
-        'PASSWORD':'Shyni@123'
+        'NAME': 'bnheagwhdtaj5tkpux0n',
+        'USER':'uhwfdwk4kzv82ufd',
+        'PASSWORD':'ZLmIuyowkyKgKqq89eIZ',
+        'HOST':'bnheagwhdtaj5tkpux0n-mysql.services.clever-cloud.com',
+        'PORT':'3306'
     }
 }
 
