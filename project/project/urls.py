@@ -23,9 +23,10 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('addrecipy',views.recipes,name='addrecipy'),
+    path('addrecipe',views.recipes,name='addrecipe'),
     path('getallrecipes',views.recipes,name='getallrecipes'),
-    path('getrecipe/<str:name>',views.getrecipe,name='getrecipe')
+    path('getrecipe/<str:name>',views.getrecipe,name='getrecipe'),
+    path('getsomerecipe/<str:area>',views.getbyarea,name='getsomerecipe')
 ]
 # Add this at the end to serve media files during development
 if settings.DEBUG:
