@@ -34,9 +34,9 @@ def getrecipe(request,name=""):
     except FoodDetails.DoesNotExist:
                 return JsonResponse({"message":"Recipe not found"},status=404)
 @csrf_exempt
-def getbyarea(request,area='All'):
+def getbyarea(request,area=''):
      if request.method == 'GET':
-          if area=='All':
+          if (area=='All' or area==""):
                recipes=FoodDetails.objects.all()
                serializer = FoodSerializer(recipes,many=True)
                return JsonResponse(serializer.data,safe=False)
