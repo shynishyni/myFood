@@ -23,16 +23,19 @@ def recipes(request):
         return JsonResponse(serializer.data,safe=False)
 
 @csrf_exempt
-def getrecipe(request,name=""):
-    try:
-        recipe=FoodDetails.objects.filter(name__icontains=name)
-        if recipe.exists():
-            serializer=FoodSerializer(recipe,many=True)
-            return JsonResponse(serializer.data,safe=False)
+def getrecipe(request,id=0):
+    if request.method == "GET":
+        if id == 0:
+            return JsonResponse({"message": "Item not found :("}, status=404)
         else:
-            return JsonResponse({"message": "Recipe not found"}, status=404)
-    except FoodDetails.DoesNotExist:
-                return JsonResponse({"message":"Recipe not found"},status=404)
+            try:
+                data = FoodDetails.objects.get(id=id)
+                serializer = FoodSerializer(data)
+                return JsonResponse(serializer.data, safe=False)
+            except FoodDetails.DoesNotExist:
+                return JsonResponse({"message": "Item not found :("}, status=404)
+            except Exception as e:
+                return JsonResponse({"message": str(e)}, status=500)
 @csrf_exempt
 def getbyarea(request,area=''):
      if request.method == 'GET':
