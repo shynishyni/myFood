@@ -11,11 +11,7 @@ This API allows users to:
 
 ## 🌐 Base URL
 
-```
-http://<your-domain>/
-```
-
-Example (local):
+Local:
 
 ```
 http://127.0.0.1:8000/
